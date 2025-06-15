@@ -1,12 +1,20 @@
 #!/bin/bash
 
-echo "🔧 Creo cartelle..."
-mkdir -p models/diffusion_models
+# Imposta working directory
+cd /workspace
 
-echo "⬇️ Scarico il modello Chroma..."
-wget -nc -O models/diffusion_models/chroma-unlocked-v36.safetensors \
-  "https://huggingface.co/lodestones/Chroma/resolve/main/chroma-unlocked-v36.safetensors"
+# Clona ComfyUI solo se non esiste
+if [ ! -d "ComfyUI" ]; then
+  git clone https://github.com/comfyanonymous/ComfyUI.git
+fi
 
-echo "🚀 Avvio ComfyUI..."
+# Scarica Chroma se richiesto
+if [ "$DOWNLOAD_CHROMA" = "true" ]; then
+  mkdir -p ComfyUI/models/diffusion_models/
+  wget -nc -O ComfyUI/models/diffusion_models/chroma-unlocked-v36.safetensors \
+    "https://huggingface.co/lodestones/Chroma/resolve/main/chroma-unlocked-v36.safetensors"
+fi
+
+# Avvia ComfyUI
 cd ComfyUI
 python3 main.py --listen --port 8188
