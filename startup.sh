@@ -13,7 +13,7 @@ fi
 if [[ "$DOWNLOAD_CHROMA" == "true" ]]; then
   echo "Download del modello Chroma..."
   mkdir -p ComfyUI/models/diffusion_models/
-  wget -nc -O ComfyUI/models/diffusion_models/chroma-unlocked-v36.safetensors \
+  wget -nc -O ComfyUI/models/diffusion_models/chroma-unlocked-v37.safetensors \
     "https://huggingface.co/lodestones/Chroma/resolve/main/chroma-unlocked-v36.safetensors"
 fi
 
